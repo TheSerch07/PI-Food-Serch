@@ -7,6 +7,25 @@ module.exports = (sequelize) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true
     },
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      primaryKey: true,
+      unique: true
+    },
+    resume: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
+    steps: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    },
+    healthScore: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
 };
