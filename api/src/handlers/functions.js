@@ -76,9 +76,51 @@ async function getRecipesDbId(id) {
     return recipeByPk
 }
 
+async function postRecipeDb({ name, resume, steps, healthScore, diet }) {
+    const newRecipe = await Recipe.create({ name, resume, steps, healthScore })
+    const dietDb = await Diet.findAll({
+        where: {
+            name: diet
+        }
+    })
+    await newRecipe.addDiet(dietDb)
+    return newRecipe
+}
+
+async function getDiet() {
+    let diets = ['gluten free', 'ketogenic', 'vegetarian', 'lacto-vegetarian','ovo-vegetarian', 'vegan', 'pescetarian', 'paleo', 'primal', 'low fodmap', 'whole 30']
+    const dietInDb = await Diet.findAll()
+    if (dietInDb.length < 1 ) {
+        diets.forEach(diet => {
+            Diet.create({
+                where: {
+                    name: diet
+                }
+            })
+        })
+    }
+}
+
+async function getDietDb() {
+    let dietInDb = await Diet.findAll()
+    return dietInDb
+}
 // getRecipesApi()
 // console.log(getRecipesApi())
 // console.log(getRecipesApiName("pasta"))
 console.log(API_KEY, "api ke")
 console.log(getRecipesApiId(4555))
 // console.log(process.env, "el procees")
+
+module.exports = {
+    recipeInfo,
+    getRecipesApi,
+    getRecipesApiName,
+    getRecipesApiId,
+    getRecipesDb,
+    getRecipesDbName,
+    getRecipesDbId,
+    postRecipeDb,
+    getDiet,
+    getDietDb
+}
