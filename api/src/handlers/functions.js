@@ -51,7 +51,12 @@ async function getRecipesApiId(id) {
 }
 
 async function getRecipesDb() {
-    const recipeFromDb = await Recipe.findAll()
+    const recipeFromDb = await Recipe.findAll({
+        include: {
+            model: Diet,
+            attributes: ["name"]
+        }
+    })
     return recipeFromDb
 }
 
@@ -88,16 +93,10 @@ async function postRecipeDb({ name, resume, steps, healthScore, diet }) {
 }
 
 async function getDiet() {
-    let diets = ['gluten free', 'ketogenic', 'vegetarian', 'lacto-vegetarian','ovo-vegetarian', 'vegan', 'pescetarian', 'paleo', 'primal', 'low fodmap', 'whole 30']
+    let diets = [{name: 'gluten free'}, {name: 'ketogenic'}, {name: 'vegetarian'}, {name: 'lacto-vegetarian'}, {name: 'ovo-vegetarian'}, {name: 'vegan'}, {name: 'pescetarian'}, {name: 'paleo'}, {name: 'primal'}, {name: 'low fodmap'}, {name: 'whole 30'}]
     const dietInDb = await Diet.findAll()
     if (dietInDb.length < 1 ) {
-        diets.forEach(diet => {
-            Diet.create({
-                where: {
-                    name: diet
-                }
-            })
-        })
+        await Diet.bulkCreate(diets)
     }
 }
 
@@ -108,8 +107,8 @@ async function getDietDb() {
 // getRecipesApi()
 // console.log(getRecipesApi())
 // console.log(getRecipesApiName("pasta"))
-console.log(API_KEY, "api ke")
-console.log(getRecipesApiId(4555))
+// console.log(API_KEY, "api ke")
+// console.log(getRecipesApiId(4555))
 // console.log(process.env, "el procees")
 
 module.exports = {

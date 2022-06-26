@@ -16,7 +16,7 @@ module.exports = (sequelize) => {
       unique: true
     },
     resume: {
-      type: DataTypes.INTEGER,
+      type: DataTypes.TEXT,
       allowNull: false
     },
     steps: {
