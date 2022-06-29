@@ -9,6 +9,7 @@ function recipeInfo(data) {
         name: data.title,
         image: data.image,
         resume: data.summary,
+        diets: data.diets,
         steps: data.analyzedInstructions[0]?.steps.map((e) => {
             return {
                 number: e.number,
