@@ -51,7 +51,7 @@ export default function reducer (state = initialState, action) {
             }
         case FILTER_RECIPES_DIET: 
             let filterRecipes = state.recipes
-            let dietRecipes = action.payload === "All" ? filterRecipes : filterRecipes.filter((diet) => diet.diets === action.payload)
+            let dietRecipes = action.payload === "All" ? filterRecipes : filterRecipes.filter((diet) => diet.diets.some((diet) => diet === action.payload))
             console.log(dietRecipes, "avr")
             return {
                 ...state, 

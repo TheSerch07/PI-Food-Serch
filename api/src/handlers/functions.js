@@ -25,7 +25,7 @@ async function getRecipesApi() {
     // https://api.spoonacular.com/recipes/complexSearch?query=pasta&addRecipeInformation=true&number=100&apiKey=6c5e909c232c4a05b04dd0bc1bc6b1a9
     // &number=100
     let arrayRecipes = []
-    const info = await axios("https://api.spoonacular.com/recipes/complexSearch?apiKey=6c5e909c232c4a05b04dd0bc1bc6b1a9&addRecipeInformation=true")
+    const info = await axios("https://api.spoonacular.com/recipes/complexSearch?apiKey=6c5e909c232c4a05b04dd0bc1bc6b1a9&addRecipeInformation=true&number=100")
     // console.log(info.data.results)
     info.data.results.forEach(recipe => {
         arrayRecipes.push(recipeInfo(recipe))
@@ -36,7 +36,7 @@ async function getRecipesApi() {
 
 async function getRecipesApiName(name) {
     let arrayRecipes = []
-    const infoForName = await axios("https://api.spoonacular.com/recipes/complexSearch?query=" + name + "&addRecipeInformation=true&number=10&apiKey=6c5e909c232c4a05b04dd0bc1bc6b1a9")
+    const infoForName = await axios("https://api.spoonacular.com/recipes/complexSearch?query=" + name + "&addRecipeInformation=true&number=100&apiKey=6c5e909c232c4a05b04dd0bc1bc6b1a9")
     // console.log(infoForName.data.results)
     infoForName.data.results.forEach(recipe => {
         arrayRecipes.push(recipeInfo(recipe))

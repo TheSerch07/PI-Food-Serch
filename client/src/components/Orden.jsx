@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { fetchRecipes, orderRecipes, filterRecipesHealthScore } from "../store/actions"; 
+import { fetchRecipes, orderRecipes, filterRecipesHealthScore, filterRecipesDiet } from "../store/actions"; 
 
 export const ASC = "A-Z";
 export const DES = "Z-A";
@@ -19,6 +19,10 @@ export default function Order() {
 
     function onSelectHealthScore(e) {
         dispatch(filterRecipesHealthScore(e.target.value))
+    };
+
+    function onSelectDiet(e) {
+        dispatch(filterRecipesDiet(e.target.value))
     }
     
     return (
@@ -31,6 +35,17 @@ export default function Order() {
         <select name="orderHealthScore" onChange={onSelectHealthScore}>
             <option value={MIN}>Min</option>
             <option value={MAX}>Max</option>
+        </select>
+        <select name="filterDiet" onChange={onSelectDiet}>
+            <option value="All">All</option>
+            <option value="gluten free">Gluten free</option>
+            <option value="ketogenic">Ketogenic</option>
+            <option value="lacto ovo vegetarian">Lacto-ovo-vegetarian</option>
+            <option value="vegan">Vegan</option>
+            <option value="dairy free">Dairy free</option>
+            <option value="paleolithic">Paleo</option>
+            <option value="primal">Primal</option>
+            <option value="whole 30">Whole 30</option>
         </select>
     </div>
     )
