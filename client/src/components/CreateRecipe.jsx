@@ -7,6 +7,13 @@ export default function CreateRecipe() {
     const recipes = useSelector((state) => state.recipes);
     const history = useHistory();
 
+    const [recipeInput, setRecipeInput] = useState({
+        name: "",
+        resume: "",
+        healthScore: "",
+        steps: []
+    }) 
+
     return (
     <div>
         <Link to="/home">
