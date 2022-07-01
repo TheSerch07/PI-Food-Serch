@@ -12,7 +12,7 @@ export default function CreateRecipe() {
         resume: "",
         healthScore: "",
         steps: []
-    }) 
+    });
 
     return (
     <div>
