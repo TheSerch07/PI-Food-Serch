@@ -21,12 +21,12 @@ export default function Recipes() {
         setCurrentPage(pageNumber)
     }
 
-    console.log(recipes)
+    console.log(recipes, "el recipes")
     return (
         <div>
             <Pagination recipesPerPage={recipesPerPage} recipes={recipes.length} pagination={pagination}/>
             {currentRecipes.map((recipe) => {
-                return <Recipe key={recipe.id} name={recipe.name} img={recipe.image} diet={recipe.diets.join(", ")} />
+                return <Recipe key={recipe.id} name={recipe.name} img={recipe.image} diet={recipe.diets} />
             })}
             <Pagination recipesPerPage={recipesPerPage} recipes={recipes.length} pagination={pagination}/>
         </div>

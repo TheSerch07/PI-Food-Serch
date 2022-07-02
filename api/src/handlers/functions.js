@@ -1,5 +1,5 @@
 const { Recipe, Diet } = require("../db")
-const { API_KEY } = process.env;
+// const { API_KEY } = process.env;
 const axios = require("axios")
 const { Op } = require("sequelize")
 
@@ -30,7 +30,7 @@ async function getRecipesApi() {
     info.data.results.forEach(recipe => {
         arrayRecipes.push(recipeInfo(recipe))
     });
-    console.log(arrayRecipes, "el array de serch")
+    // console.log(arrayRecipes, "el array de serch")
     return arrayRecipes
 }
 
@@ -58,6 +58,7 @@ async function getRecipesDb() {
             attributes: ["name"]
         }
     })
+    console.log(recipeFromDb, "la receta de la DB")
     return recipeFromDb
 }
 

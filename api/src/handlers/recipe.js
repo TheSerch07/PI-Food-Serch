@@ -8,11 +8,12 @@ const getRecipes = async (req, res, next) => {
         if (name) {
             recipeDb = await getRecipesDbName(name)
             recipeApi = await getRecipesApiName(name)
-            console.log(recipeApi, "what?")
+            console.log(recipeApi.dataValues.diets, "what?")
             return res.status(200).json([...recipeDb, ...recipeApi])
         } else {
             recipeDb = await getRecipesDb()
             recipeApi = await getRecipesApi()
+            console.log(recipeDb.dataValues.diets, "que putas?")
             return res.status(200).json([...recipeDb, ...recipeApi])
         }
     } catch (err) {

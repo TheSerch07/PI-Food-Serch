@@ -1,9 +1,10 @@
 import { ASC, MIN } from "../../components/Orden"
-import { FETCH_RECIPES, FETCH_RECIPES_NAME, FILTER_RECIPES_DIET, FILTER_RECIPES_HEALTHSCORE, ORDER_RECIPES } from "../actions"
+import { FETCH_DIETS, FETCH_RECIPES, FETCH_RECIPES_NAME, FILTER_RECIPES_DIET, FILTER_RECIPES_HEALTHSCORE, ORDER_RECIPES, POST_RECIPE } from "../actions"
 
 const initialState = {
     recipes: [],
     filteredRecipes: [],
+    diets: []
 }
 
 export default function reducer (state = initialState, action) {
@@ -19,6 +20,12 @@ export default function reducer (state = initialState, action) {
                 ...state,
                 filteredRecipes: action.payload
             }
+        case FETCH_DIETS: {
+            return {
+                ...state,
+                diets: action.payload
+            }
+        }
         case ORDER_RECIPES: 
             let orderRecipesName = [...state.filteredRecipes]
             orderRecipesName = orderRecipesName.sort((a, b) => {
@@ -56,6 +63,10 @@ export default function reducer (state = initialState, action) {
             return {
                 ...state, 
                 filteredRecipes: dietRecipes
+            }
+        case POST_RECIPE:
+            return {
+                ...state
             }
         default: 
             return {
